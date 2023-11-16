@@ -1,0 +1,24 @@
+services: 
+  jenkins_devops:
+    container_name: jenkins_devops
+    image: maikol555/jenkins_devops:1.0
+    hostname: jenkins
+    ports: 
+      - "8080:8080"
+    environment:
+      - JENKINS_OPTS="--prefix=/jenkins"
+      - DEVOPS="maikolpelaez"
+    volumes: 
+      - /home/devops/data-storge/cursoDevops/jenkins_home:/var/jenkins_home
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4000M
+    networks:
+      default:
+        ipv4_address: 10.130.2.200
+networks:
+  default:
+    external: true  
+    name: red1
